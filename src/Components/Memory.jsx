@@ -7,12 +7,12 @@ export default function Memory({ onContinue, onPrevious }) {
   const scenes = [
     {
       title: "A moment from this year…",
-      message: "You shone bright during the holiday party! 🎉",
+      message: "This part should have a photo/photos of the 2 of you, or the receiver of the gift 🎉",
       color: "bg-red-600",
     },
     {
       title: "A quality people love about you…",
-      message: "Your kindness warms everyone around you! ❤️",
+      message: "Your kindness. It warms everyone around you! ❤️",
       color: "bg-green-600",
     },
     {

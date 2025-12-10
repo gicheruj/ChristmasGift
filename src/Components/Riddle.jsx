@@ -8,7 +8,7 @@ const Riddle = ({ onContinue, onPrevious }) => {
   const [status, setStatus] = useState("idle"); // idle, wrong, correct, opening, opened
   const [message, setMessage] = useState("");
   const [showHub, setShowHub] = useState(false);
-  const correctAnswer = "light"; // Change to your preferred answer
+  const correctAnswer = "deck of cards"; // Change to your preferred answer
   const controlsLeft = useAnimation();
   const controlsRight = useAnimation();
 
@@ -96,7 +96,7 @@ const Riddle = ({ onContinue, onPrevious }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          I come in many shapes and colors, I am hung up but not clothes, I shine but I am not the sun. What am I?
+          What has 13 hearts but no other organs?
         </motion.p>
 
         {!showHub && (

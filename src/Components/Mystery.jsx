@@ -129,7 +129,7 @@ export default function Mystery({ onContinue, onPrevious }) {
           style={{ fontFamily: "'Mountains of Christmas', cursive" }}
         >
           Swipe over the frosted box below to reveal your instructions!
-          Swipe until the buttons appear,
+          Swipe till the button appears,
         </p>
       </div>
 

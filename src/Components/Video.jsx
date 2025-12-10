@@ -51,7 +51,7 @@ const Video = () => {
           className="mt-6 text-center text-lg text-gray-200 max-w-2xl leading-relaxed"
         >
           I hope this little journey brought a smile to your face.  
-          You matter so much — more than words can ever say.  
+          You matter so much  more than words can ever say.  
           Here’s a message from the heart… just for you. ❤️
         </motion.p>
       </div>
