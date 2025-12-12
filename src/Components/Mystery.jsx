@@ -20,7 +20,7 @@ export default function Mystery({ onContinue, onPrevious }) {
     canvas.height = canvasHeight;
 
     // Draw frost overlay
-    ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+    ctx.fillStyle = "rgba(255, 255, 255)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     let isDrawing = false;
@@ -57,18 +57,17 @@ export default function Mystery({ onContinue, onPrevious }) {
       for (let i = 3; i < imageData.data.length; i += 4) {
         if (imageData.data[i] === 0) cleared++;
       }
-
-      const percent = (cleared / (canvas.width * canvas.height)) * 100;
+      let percent = (cleared / (canvas.width * canvas.height)) * 100;
 
       // === NEW LOGIC ===
-      if (percent > 60 && !completed) {
+      if (percent > 60) {
         setCompleted(true);
 
         // Remove all frost instantly
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Disable scratching
-        canvas.style.pointerEvents = "none";
+        // canvas.style.pointerEvents = "none";
       }
     };
 
@@ -110,7 +109,7 @@ export default function Mystery({ onContinue, onPrevious }) {
       canvas.removeEventListener("touchmove", handlePointerMove);
       canvas.removeEventListener("touchend", handlePointerUp);
     };
-  }, [completed]);
+  }, [] );
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 flex flex-col items-center justify-center text-white overflow-hidden px-4">

@@ -4,13 +4,21 @@ import { motion, useAnimation } from "framer-motion";
 import Snowfall from "react-snowfall";
 
 const Riddle = ({ onContinue, onPrevious }) => {
+// function correctAns(ans) {
+//   const lowerAns = ans.toLowerCase();
+//   if (lowerAns.includes('deck') && lowerAns.includes('cards')) {
+//     return true;
+//   }
+//   return false;
+// }
   const [answer, setAnswer] = useState("");
   const [status, setStatus] = useState("idle"); // idle, wrong, correct, opening, opened
   const [message, setMessage] = useState("");
   const [showHub, setShowHub] = useState(false);
-  const correctAnswer = "deck of cards"; // Change to your preferred answer
+  const correctAnswer = (ans) => {
+  return ans.includes('deck') && ans.includes('cards');}; 
   const controlsLeft = useAnimation();
-  const controlsRight = useAnimation();
+  const controlsRight = useAnimation(); 
 
   // Handle doors opening after correct answer
   useEffect(() => {
@@ -61,7 +69,7 @@ const Riddle = ({ onContinue, onPrevious }) => {
       setTimeout(() => setStatus("idle"), 1400);
       return;
     }
-    if (normalized === correctAnswer) {
+    if (correctAnswer(normalized)) {
       setStatus("correct");
       setMessage("Correct! Opening the door...");
     } else {
