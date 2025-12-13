@@ -8,6 +8,10 @@ const icons = [
   { id: 2, emoji: "🍪", message: "Cookies matched! 🍪" },
   { id: 3, emoji: "⭐", message: "Stars matched! ⭐" },
   { id: 4, emoji: "❤️", message: "Hearts matched! ❤️" },
+  { id: 5, emoji: "🎄", message: "Christmas Tree matched! 🎄" },
+  { id: 6, emoji: "🔔", message: "Bells matched! 🔔" },
+  { id: 7, emoji: "☃️", message: "Snowman matched! ☃️" },
+  { id: 8, emoji: "🎅", message: "Santa matched! 🎅" },
 ];
 
 export default function Matching({ onContinue, onPrevious }) {
