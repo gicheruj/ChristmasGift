@@ -4,8 +4,8 @@ import { motion, useAnimation } from "framer-motion";
 import Snowfall from "react-snowfall";
 
 const Riddle = ({ onContinue, onPrevious }) => {
- [answer, setAnswer] = useState("");
-  const [status, setStatus] = useState("idle"); 
+  const [answer, setAnswer] = useState("");
+  const [status, setStatus] = useState("idle"); // idle, wrong, correct, opening, opened
   const [message, setMessage] = useState("");
   const [showHub, setShowHub] = useState(false);
   const correctAnswer = (ans) => {
