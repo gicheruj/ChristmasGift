@@ -9,13 +9,12 @@ export default function Welcome({ onContinue, onPrevious }) {
       {/* Snow animation */}
       <Snowfall color="white" snowflakeCount={80} />
 
-      {/* Optional: subtle sparkling stars animation */}
+      {/* subtle sparkling stars animation */}
       <motion.div
         className="absolute top-0 left-0 w-full h-full"
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 2, repeat: Infinity, repeatDelay: 0.5 }}
       >
-        {/* You can layer more sparkles or light animations here */}
       </motion.div>
 
       {/* Mystery Text */}
@@ -31,15 +30,6 @@ export default function Welcome({ onContinue, onPrevious }) {
 
       {/* Buttons */}
       <div className="mt-12 flex gap-8">
-        {/* <motion.button
-          onClick={onPrevious}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-full text-lg md:text-xl font-bold shadow-md"
-          style={{ fontFamily: "'Great Vibes', cursive" }}
-        >
-          Previous
-        </motion.button> */}
 
         <motion.button
           onClick={onContinue}

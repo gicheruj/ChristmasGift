@@ -2,38 +2,13 @@
 import React, { useEffect, useRef } from "react";
 import Snowfall from "react-snowfall";
 import { motion } from "framer-motion";
-// import snowmanImg from "../assets/snowman.png"; // add a snowman image in assets
-import musicFile from "../assets/christmas-music.mp3"; // add your mp3 file here
 
 export default function WarmWelcome({ onContinue }) {
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    // Autoplay background music
-    if (audioRef.current) {
-      audioRef.current.volume = 0.3;
-      audioRef.current.play().catch(() => {
-        // Autoplay might fail on some browsers
-      });
-    }
-  }, []);
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 flex flex-col items-center justify-center text-white overflow-hidden">
       {/* Background Snow */}
       <Snowfall color="white" snowflakeCount={120} />
-
-      {/* Snowman image */}
-      {/* <img
-        src={snowmanImg}
-        alt="Snowman"
-        className="absolute bottom-0 left-10 w-32 md:w-48 opacity-80"
-      /> */}
-
-      {/* Background music */}
-      <audio ref={audioRef} loop>
-        <source src={musicFile} type="audio/mpeg" />
-      </audio>
 
       {/* Big Welcome Message */}
       <motion.h1

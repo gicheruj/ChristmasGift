@@ -4,15 +4,8 @@ import { motion, useAnimation } from "framer-motion";
 import Snowfall from "react-snowfall";
 
 const Riddle = ({ onContinue, onPrevious }) => {
-// function correctAns(ans) {
-//   const lowerAns = ans.toLowerCase();
-//   if (lowerAns.includes('deck') && lowerAns.includes('cards')) {
-//     return true;
-//   }
-//   return false;
-// }
-  const [answer, setAnswer] = useState("");
-  const [status, setStatus] = useState("idle"); // idle, wrong, correct, opening, opened
+ [answer, setAnswer] = useState("");
+  const [status, setStatus] = useState("idle"); 
   const [message, setMessage] = useState("");
   const [showHub, setShowHub] = useState(false);
   const correctAnswer = (ans) => {
