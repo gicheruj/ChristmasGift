@@ -113,7 +113,7 @@ const Riddle = ({ onContinue, onPrevious }) => {
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               disabled={status === "opening" || status === "opened"}
-              placeholder="Type your answer and press Enter"
+              placeholder="Type your answer..."
               className={`bg-white/6 backdrop-blur-sm placeholder-gray-300 text-white px-4 py-3 rounded-xl w-80 md:w-96 focus:outline-none focus:ring-2 ${
                 status === "wrong" ? "ring-red-500" : "ring-0"
               }`}
