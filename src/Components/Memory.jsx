@@ -11,7 +11,9 @@ const MemoryPuzzle = ({ onContinue }) => {
   const imageRef = useRef(null);
 
   // REPLACE THIS URL WITH YOUR OWN IMAGE URL
- const MEMORY_IMAGE_URL = "https://i.imgur.com/pKyAMRG.jpeg";
+  // You can upload your image to a service like Imgur, Cloudinary, or use a direct URL
+  const MEMORY_IMAGE_URL = "https://i.imgur.com/pKyAMRG.jpeg";
+  // Example: const MEMORY_IMAGE_URL = "https://i.imgur.com/yourimage.jpg";
 
   const GRID_SIZE = 3; // 3x3 = 9 pieces
   const PIECE_SIZE = 120;
@@ -19,6 +21,14 @@ const MemoryPuzzle = ({ onContinue }) => {
 
   const pieceMessages = [
     "This moment meant a lot to me.",
+    "I still smile when I think about this.",
+    "You didn't know it then, but this mattered.",
+    "One of my favorite memories.",
+    "Time flies, but memories stay.",
+    "This always brings me joy.",
+    "I'm grateful this happened.",
+    "A piece of my heart lives here.",
+    "This is one I'll never forget."
   ];
 
   useEffect(() => {
@@ -27,6 +37,9 @@ const MemoryPuzzle = ({ onContinue }) => {
     img.crossOrigin = "anonymous";
     img.onload = () => {
       imageRef.current = img;
+    };
+    img.onerror = () => {
+      console.error("Failed to load image. Please check the MEMORY_IMAGE_URL.");
     };
     img.src = MEMORY_IMAGE_URL;
   }, []);
@@ -111,8 +124,11 @@ const MemoryPuzzle = ({ onContinue }) => {
     const rect = container.getBoundingClientRect();
     const pieceRect = e.currentTarget.getBoundingClientRect();
     
-    const offsetX = e.clientX - pieceRect.left;
-    const offsetY = e.clientY - pieceRect.top;
+    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+    
+    const offsetX = clientX - pieceRect.left;
+    const offsetY = clientY - pieceRect.top;
     
     setDraggedPiece({ ...piece, offsetX, offsetY });
   };
@@ -124,8 +140,11 @@ const MemoryPuzzle = ({ onContinue }) => {
     const container = document.getElementById('puzzle-container');
     const rect = container.getBoundingClientRect();
     
-    const newX = e.clientX - rect.left - draggedPiece.offsetX - 32;
-    const newY = e.clientY - rect.top - draggedPiece.offsetY - 32;
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+    
+    const newX = clientX - rect.left - draggedPiece.offsetX - 32;
+    const newY = clientY - rect.top - draggedPiece.offsetY - 32;
     
     setPieces(prev => prev.map(p => 
       p.id === draggedPiece.id ? { ...p, currentX: newX, currentY: newY } : p
@@ -278,7 +297,9 @@ const MemoryPuzzle = ({ onContinue }) => {
       className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[#07101a] via-[#0b1a26] to-[#071018] text-white overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
-      style={{ userSelect: 'none' }}
+      onTouchMove={handleMouseMove}
+      onTouchEnd={handleMouseUp}
+      style={{ userSelect: 'none', touchAction: 'none' }}
     >
       <canvas ref={canvasRef} width={PIECE_SIZE * GRID_SIZE} height={PIECE_SIZE * GRID_SIZE} className="hidden" />
       
@@ -306,6 +327,7 @@ const MemoryPuzzle = ({ onContinue }) => {
             <div
               key={piece.id}
               onMouseDown={(e) => handleMouseDown(e, piece)}
+              onTouchStart={(e) => handleMouseDown(e, piece)}
               className={`absolute select-none transition-all ${
                 piece.placed 
                   ? 'cursor-default' 
@@ -329,7 +351,8 @@ const MemoryPuzzle = ({ onContinue }) => {
                 opacity: piece.placed ? 1 : 0.95,
                 zIndex: draggedPiece?.id === piece.id ? 1000 : piece.placed ? 1 : 10,
                 transform: draggedPiece?.id === piece.id ? 'scale(1.05)' : 'scale(1)',
-                transition: draggedPiece?.id === piece.id ? 'none' : 'all 0.3s ease'
+                transition: draggedPiece?.id === piece.id ? 'none' : 'all 0.3s ease',
+                touchAction: 'none'
               }}
             />
           ))}
