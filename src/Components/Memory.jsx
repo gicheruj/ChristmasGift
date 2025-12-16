@@ -11,7 +11,7 @@ const MemoryPuzzle = ({ onContinue }) => {
   const imageRef = useRef(null);
 
   // REPLACE THIS URL WITH YOUR OWN IMAGE URL
-  const MEMORY_IMAGE_URL = "../src/assets/CouplePic.jpg";
+ const MEMORY_IMAGE_URL = "/CouplePic.jpg";
 
   const GRID_SIZE = 3; // 3x3 = 9 pieces
   const PIECE_SIZE = 120;
